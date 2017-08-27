@@ -35,5 +35,5 @@ typedef struct {
 } Tweet;
 
 TweetFeedStreamHandle tweetfeed_stream_new(TweetFeedContext* ctx, const TweetFeedConfig* cfg);
-void tweetfeed_stream_start(TweetFeedStreamHandle stream, void(TweetCallback*)(Tweet* tweet));
-void tweetfeed_tweet_free(Tweet* tweet);
+void tweetfeed_stream_start(TweetFeedContext* ctx, TweetFeedStreamHandle stream, void(TweetCallback*)(Tweet* tweet));
+void tweetfeed_tweet_free(TweetFeedContext* ctx, Tweet* tweet);
