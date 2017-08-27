@@ -1,5 +1,6 @@
 #include <stdlib.h>
 
+typedef uint32_t TweetFeedHandle;
 typedef struct {} TweetFeedContext;
 
 #ifdef PLATFORM_GTK
@@ -21,7 +22,7 @@ typedef struct {
   ByteSlice token_secret;
 } TweetFeedConfig;
 
-typedef struct {} TweetFeedStream;
+typedef TweetFeedHandle TweetFeedStreamHandle;
 
 typedef struct {
   const uint8_t *bytes;
@@ -33,6 +34,6 @@ typedef struct {
   ByteSlice body;
 } Tweet;
 
-TweetFeedStream* tweetfeed_stream_new(TweetFeedContext* ctx, const TweetFeedConfig* cfg);
-void tweetfeed_stream_start(TweetFeedStream* stream, void(TweetCallback*)(Tweet* tweet));
+TweetFeedStreamHandle tweetfeed_stream_new(TweetFeedContext* ctx, const TweetFeedConfig* cfg);
+void tweetfeed_stream_start(TweetFeedStreamHandle stream, void(TweetCallback*)(Tweet* tweet));
 void tweetfeed_tweet_free(Tweet* tweet);
