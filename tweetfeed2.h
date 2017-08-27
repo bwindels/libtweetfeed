@@ -2,8 +2,16 @@
 
 typedef struct {} TweetFeedContext;
 
-TweetFeedContext* tweetfeed_context_new_for_gtk(GMainContext* ui_ctx);
-TweetFeedContext* tweetfeed_context_new_for_libdispatch(dispatch_queue_t ui_queue);
+#ifdef PLATFORM_GTK
+  #include <gtk/gtk.h>
+  TweetFeedContext* tweetfeed_context_new_for_gtk(GMainContext* ui_ctx);
+#endif
+
+#ifdef PLATFORM_LIBDISPATCH
+  #include <dispatch/dispatch.h>
+  TweetFeedContext* tweetfeed_context_new_for_libdispatch(dispatch_queue_t ui_queue);
+#endif
+
 void tweetfeed_context_destroy(TweetFeedContext* ctx);
 
 typedef struct {
